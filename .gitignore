@@ -1,0 +1,12 @@
+# WoW Addon Git Ignore
+*.bak
+*.orig
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+
+# Local SavedVariables (never commit user data)
+../../WTF/
