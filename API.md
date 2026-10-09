@@ -1,7 +1,7 @@
 # 🔌 Especificación Técnica y API — AdminTools
 
-[![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FWoWPeru__AdminTools-black?logo=github)](https://github.com/DarckRovert/WoWPeru_AdminTools)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://wow-peru.lat/)
+[![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FWanos__AdminTools-black?logo=github)](https://github.com/DarckRovert/Wanos_AdminTools)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://worldofwanos.com/)
 
 ## 📌 Resumen Arquitectónico
 Panel gráfico por pestañas para Game Masters y administradores de servidores 3.3.5a (TrinityCore / AzerothCore). Intercepta y emite comandos del servidor mediante `SendChatMessage` en el canal `SAY`.
@@ -15,8 +15,8 @@ Panel gráfico por pestañas para Game Masters y administradores de servidores 3
 ## ⌨️ Comandos de Consola (Slash Commands)
 - `/admin`: Alterna la visibilidad del marco principal. Si se acompaña de argumentos (`/admin .tele dalaran`), despacha el comando directamente.
 - `/adt`: Alias corto idéntico a `/admin`.
-- `/wpadm`: Prefijo oficial de administración de WoW Perú.
-- `/wpgm`: Prefijo oficial para Game Masters de WoW Perú.
+- `/wpadm`: Prefijo oficial de administración de Project Jaina.
+- `/wpgm`: Prefijo oficial para Game Masters de Project Jaina.
 - `/admintools`: Comando largo alternativo.
 
 ---

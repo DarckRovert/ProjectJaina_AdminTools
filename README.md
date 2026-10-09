@@ -1,12 +1,12 @@
-# 🛡️ WoW Perú — AdminTools (Panel Game Master & Administración)
+# 🛡️ Project Jaina — AdminTools (Panel Game Master & Administración)
 
-[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://wow-peru.lat/)
+[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://worldofwanos.com/)
 [![Core Compatibility](https://img.shields.io/badge/Core-AzerothCore%20%7C%20TrinityCore-red.svg)](https://github.com/azerothcore)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FWoWPeru__AdminTools-black?logo=github)](https://github.com/DarckRovert/WoWPeru_AdminTools)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://wow-peru.lat/)
+[![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FWanos__AdminTools-black?logo=github)](https://github.com/DarckRovert/Wanos_AdminTools)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://worldofwanos.com/)
 
-Suite administrativa in-game de comandos y herramientas para **Game Masters (GMs)** y administradores de servidores privados de **World of Warcraft 3.3.5a (WotLK Build 12340)**, adaptada e integrada oficialmente en el ecosistema de **WoW Perú — Reino Andino**.
+Suite administrativa in-game de comandos y herramientas para **Game Masters (GMs)** y administradores de servidores privados de **World of Warcraft 3.3.5a (WotLK Build 12340)**, adaptada e integrada oficialmente en el ecosistema de **Project Jaina — Project Jaina**.
 
 Permite ejecutar de forma inmediata teletransportes masivos, invocación de PNJs temporales, gestión de personajes, trucos de desarrollo y control del servidor mediante una interfaz de pestañas, sin necesidad de teclear comandos de punto (`.tele`, `.additem`, `.server`, etc.) manualmente en la consola.
 
@@ -56,8 +56,8 @@ El addon responde a los siguientes comandos de consola:
 - `/admin` — Abre o cierra el panel principal de administración.
 - `/admin <comando>` — Ejecuta un comando directamente sin abrir la ventana (ej: `/admin tele dalaran`).
 - `/adt` — Alias corto alternativo.
-- `/wpadm` — Alias oficial del ecosistema WoW Perú.
-- `/wpgm` — Alias oficial para Game Masters de WoW Perú.
+- `/wpadm` — Alias oficial del ecosistema Project Jaina.
+- `/wpgm` — Alias oficial para Game Masters de Project Jaina.
 - `/admintools` — Comando extendido.
 
 ---
@@ -72,7 +72,7 @@ El addon responde a los siguientes comandos de consola:
 1. Clona o descarga este repositorio dentro del directorio de addons del cliente:
    ```bash
    cd "World of Warcraft/Interface/AddOns"
-   git clone https://github.com/DarckRovert/WoWPeru_AdminTools.git AdminTools
+   git clone https://github.com/DarckRovert/Wanos_AdminTools.git AdminTools
    ```
 2. Asegúrate de que la carpeta se llame exactamente `AdminTools`.
 3. Inicia el cliente de juego y en la pantalla de personajes activa el addon en el menú de **Accesorios**.
@@ -88,16 +88,16 @@ El addon responde a los siguientes comandos de consola:
 
 ## 🌐 Integración con el Ecosistema
 
-Este addon es el **Módulo Oficial #20** de la infraestructura tecnológica de **WoW Perú - Reino Andino**, coexistiendo armónicamente con:
-- `WoWPeru_GMGenie`: Suite de tickets y soporte a jugadores.
-- `WoWPeru_IntiObjGPS`: Captura de coordenadas de GameObjects.
-- `WoWPeru_Companion`: Bus de comunicación y telemetría comunitaria.
-- `WoWPeru_Graphics`: Renderizado de interfaz cristalina nativa.
+Este addon es el **Módulo Oficial #20** de la infraestructura tecnológica de **Project Jaina - Project Jaina**, coexistiendo armónicamente con:
+- `Wanos_GMGenie`: Suite de tickets y soporte a jugadores.
+- `Wanos_IntiObjGPS`: Captura de coordenadas de GameObjects.
+- `Wanos_Companion`: Bus de comunicación y telemetría comunitaria.
+- `Wanos_Graphics`: Renderizado de interfaz cristalina nativa.
 
 ---
 
 ## 📜 Atribución y Licencia
 
 - **Autor Original:** `valdrea` ([NexusMods Mod 902](https://www.nexusmods.com/worldofwarcraft/mods/902)).
-- **Adaptación y Mantenimiento:** WoW Perú Dev Team (DarckRovert / Elnazzareno).
+- **Adaptación y Mantenimiento:** Project Jaina Dev Team (DarckRovert / Elnazzareno).
 - **Licencia:** Distribuido bajo la [Licencia MIT](LICENSE).

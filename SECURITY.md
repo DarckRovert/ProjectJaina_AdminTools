@@ -1,7 +1,7 @@
 # 🛡️ Política de Seguridad y Mitigación de Vulnerabilidades — AdminTools
 
-**Proyecto:** Ecosistema WoW Perú  
-**Repositorio Oficial:** [https://github.com/DarckRovert/WoWPeru_AdminTools](https://github.com/DarckRovert/WoWPeru_AdminTools)
+**Proyecto:** Ecosistema Project Jaina  
+**Repositorio Oficial:** [https://github.com/DarckRovert/Wanos_AdminTools](https://github.com/DarckRovert/Wanos_AdminTools)
 
 ---
 
@@ -23,5 +23,5 @@ Toda cadena enviada a través de `RunCmd` es truncada a un máximo estricto de *
 ## 🚨 Reporte de Vulnerabilidades
 
 Si detectas un comportamiento anómalo o brecha de seguridad:
-- Reporte directo al Staff de WoW Perú vía Discord Privado.
-- [GitHub Issues](https://github.com/DarckRovert/WoWPeru_AdminTools/issues).
+- Reporte directo al Staff de Project Jaina vía Discord Privado.
+- [GitHub Issues](https://github.com/DarckRovert/Wanos_AdminTools/issues).

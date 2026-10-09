@@ -31,7 +31,7 @@ local function RunCmd(cmd)
 	if #cmd > 255 then cmd = cmd:sub(1, 255) end
 	SendChatMessage(cmd, "SAY")
 	if not AdminToolsDB or AdminToolsDB.echo ~= false then
-		DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[WoW Perú Admin]|r " .. cmd)
+		DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina Admin]|r " .. cmd)
 	end
 end
 
@@ -187,7 +187,7 @@ f:SetScript("OnMouseDown", function(self) self:Raise() end)
 f:Hide()
 tinsert(UISpecialFrames, "AdminToolsFrame")  -- ESC closes
 
-local title = MakeLabel(f, "|cFFFFD700WoW Perú|r |cFF00FFCCAdmin Tools|r |cFF888888v2.0.1|r", "GameFontHighlightLarge")
+local title = MakeLabel(f, "|cFFFFD700Project Jaina|r |cFF00FFCCAdmin Tools|r |cFF888888v2.0.1|r", "GameFontHighlightLarge")
 title:SetPoint("TOP", 0, -16)
 
 local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
@@ -838,5 +838,5 @@ ev:SetScript("OnEvent", function(self, event, name)
 	RefreshCustom()
 	ShowPage(AdminToolsDB.tab or "Tele")
 	self:UnregisterEvent("ADDON_LOADED")
-	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[WoW Perú]|r |cFF00FFCCAdmin Tools|r v2.0.1 cargado. Usa |cFFFFD700/admin|r, |cFFFFD700/wpadm|r o |cFFFFD700/wpgm|r.")
+	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools|r v2.0.1 cargado. Usa |cFFFFD700/admin|r, |cFFFFD700/wpadm|r o |cFFFFD700/wpgm|r.")
 end)

@@ -1,6 +1,6 @@
-# 🌐 Registro de Ecosistema — WoWPeru_AdminTools
+# 🌐 Registro de Ecosistema — Wanos_AdminTools
 
-Ficha técnica oficial de registro en la infraestructura multi-addon de **WoW Perú - Reino Andino**.
+Ficha técnica oficial de registro en la infraestructura multi-addon de **Project Jaina - Project Jaina**.
 
 ---
 
@@ -8,13 +8,13 @@ Ficha técnica oficial de registro en la infraestructura multi-addon de **WoW Pe
 
 | Campo | Valor |
 |---|---|
-| **Nombre Técnico** | `WoWPeru_AdminTools` |
+| **Nombre Técnico** | `Wanos_AdminTools` |
 | **Carpeta Local** | `AdminTools` |
 | **Versión Actual** | `2.0.1` |
 | **Clasificación** | Herramientas Staff / GM / Administración In-Game |
 | **Módulo Oficial** | Módulo Oficial #20 |
 | **Licencia Formal** | MIT |
-| **Repositorio GitHub** | [WoWPeru_AdminTools](https://github.com/DarckRovert/WoWPeru_AdminTools) |
+| **Repositorio GitHub** | [Wanos_AdminTools](https://github.com/DarckRovert/Wanos_AdminTools) |
 | **Entorno de Juego** | World of Warcraft 3.3.5a (Build 12340) / WotLK |
 | **Persistencia** | `AdminToolsDB` (por cuenta / `SavedVariables`) |
 
@@ -33,7 +33,7 @@ Ficha técnica oficial de registro en la infraestructura multi-addon de **WoW Pe
 
 | Módulo Coexistente | Modo de Interacción | Flujo de Datos |
 |---|---|---|
-| **`WoWPeru_GMGenie`** | Complementariedad Staff | `GMGenie` administra la cola de tickets y telemetría de jugadores; `AdminTools` ejecuta acciones masivas de desarrollo y comandos directos. |
-| **`WoWPeru_IntiObjGPS`** | Sinergia Espacial | `IntiObjGPS` captura coordenadas exactas de GameObjects; `AdminTools` provee teletransporte inmediato y pruebas en vivo. |
-| **`WoWPeru_Graphics`** | Armonía Visual | Se beneficia del renderizado nítido sin artefactos visuales ni escalado borroso. |
+| **`Wanos_GMGenie`** | Complementariedad Staff | `GMGenie` administra la cola de tickets y telemetría de jugadores; `AdminTools` ejecuta acciones masivas de desarrollo y comandos directos. |
+| **`Wanos_IntiObjGPS`** | Sinergia Espacial | `IntiObjGPS` captura coordenadas exactas de GameObjects; `AdminTools` provee teletransporte inmediato y pruebas en vivo. |
+| **`Wanos_Graphics`** | Armonía Visual | Se beneficia del renderizado nítido sin artefactos visuales ni escalado borroso. |
 | **`ACP` (Addon Control Panel)** | Control de Carga | Permite ser activado o desactivado en caliente sin requerir reinicio del cliente. |

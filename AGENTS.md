@@ -1,7 +1,7 @@
 # 🤖 Directrices de Ingeniería y Restricciones para Agentes IA — AdminTools
 
-**Addon:** `AdminTools` (`WoWPeru_AdminTools`)  
-**Repositorio Oficial:** [https://github.com/DarckRovert/WoWPeru_AdminTools](https://github.com/DarckRovert/WoWPeru_AdminTools)  
+**Addon:** `AdminTools` (`Wanos_AdminTools`)  
+**Repositorio Oficial:** [https://github.com/DarckRovert/Wanos_AdminTools](https://github.com/DarckRovert/Wanos_AdminTools)  
 **Motor Gráfico y Runtime:** WoW 3.3.5a WotLK (Build 12340) / Lua 5.1 (Blizzard VM)
 
 ---

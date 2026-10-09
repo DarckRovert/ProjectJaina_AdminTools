@@ -55,7 +55,7 @@ def test_admin_tools_sanity():
     # 5. Verify Slash Commands
     assert "SLASH_ADMINTOOLS3 = \"/wpadm\"" in raw_code, "Missing /wpadm slash command"
     assert "SLASH_ADMINTOOLS4 = \"/wpgm\"" in raw_code, "Missing /wpgm slash command"
-    print("[PASS] WoW Peru slash command suite validated (/admin, /adt, /wpadm, /wpgm, /admintools).")
+    print("[PASS] Project Jaina slash command suite validated (/admin, /adt, /wpadm, /wpgm, /admintools).")
 
     print("\n>>> ALL WOWPERU_ADMINTOOLS SANITY CHECKS PASSED 100% <<<")
 

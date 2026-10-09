@@ -1,11 +1,11 @@
 # 📦 Guía de Instalación y Despliegue — AdminTools
 
-[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://wow-peru.lat/)
-[![Repositorio](https://img.shields.io/badge/GitHub-DarckRovert%2FWoWPeru__AdminTools-black?logo=github)](https://github.com/DarckRovert/WoWPeru_AdminTools)
+[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://worldofwanos.com/)
+[![Repositorio](https://img.shields.io/badge/GitHub-DarckRovert%2FWanos__AdminTools-black?logo=github)](https://github.com/DarckRovert/Wanos_AdminTools)
 
 ## 📋 Requisitos Previos
 - **Cliente:** World of Warcraft 3.3.5a (Build 12340), en español (`esES`) o inglés (`enUS`).
-- **Servidor:** AzerothCore o TrinityCore (**WoW Perú — Reino Andino**).
+- **Servidor:** AzerothCore o TrinityCore (**Project Jaina — Project Jaina**).
 - **Cuenta con Rango GM:** Nivel de seguridad `1` (Moderador), `2` (Game Master) o `3` (Administrador).
 
 ---
@@ -18,7 +18,7 @@
 
 2. **Copiar o Clonar el Addon:**  
    ```bash
-   git clone https://github.com/DarckRovert/WoWPeru_AdminTools.git AdminTools
+   git clone https://github.com/DarckRovert/Wanos_AdminTools.git AdminTools
    ```
 
 3. **Verificación de Estructura:**  

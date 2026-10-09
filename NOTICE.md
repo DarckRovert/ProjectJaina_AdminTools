@@ -1,13 +1,13 @@
 # 📜 Aviso Legal y Atribuciones — AdminTools
 
-Este módulo forma parte de la infraestructura de cliente de **WoW Perú - Reino Andino**.
+Este módulo forma parte de la infraestructura de cliente de **Project Jaina - Project Jaina**.
 
 ---
 
 ## 🏛️ Atribución de Autoría Original
 
 - **Autor Original:** `valdrea` (Creador del proyecto original *Admin Tools* para WotLK 3.3.5a en NexusMods, Mod 902).
-- **Adaptación y Mantenimiento:** WoW Perú Dev Team (DarckRovert / Elnazzareno).
+- **Adaptación y Mantenimiento:** Project Jaina Dev Team (DarckRovert / Elnazzareno).
 - El proyecto original se distribuye bajo la licencia MIT, cuyos términos se respetan íntegramente en este repositorio.
 
 ---
