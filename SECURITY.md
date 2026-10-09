@@ -1,7 +1,7 @@
 # 🛡️ Política de Seguridad y Mitigación de Vulnerabilidades — AdminTools
 
 **Proyecto:** Ecosistema Project Jaina  
-**Repositorio Oficial:** [https://github.com/DarckRovert/Wanos_AdminTools](https://github.com/DarckRovert/Wanos_AdminTools)
+**Repositorio Oficial:** [https://github.com/DarckRovert/ProjectJaina_AdminTools](https://github.com/DarckRovert/ProjectJaina_AdminTools)
 
 ---
 
@@ -24,4 +24,4 @@ Toda cadena enviada a través de `RunCmd` es truncada a un máximo estricto de *
 
 Si detectas un comportamiento anómalo o brecha de seguridad:
 - Reporte directo al Staff de Project Jaina vía Discord Privado.
-- [GitHub Issues](https://github.com/DarckRovert/Wanos_AdminTools/issues).
+- [GitHub Issues](https://github.com/DarckRovert/ProjectJaina_AdminTools/issues).

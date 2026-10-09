@@ -1,4 +1,4 @@
-# 📝 Registro de Cambios — Wanos_AdminTools
+# 📝 Registro de Cambios — ProjectJaina_AdminTools
 
 Todas las modificaciones notables a este proyecto se documentan en este archivo.  
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y sigue [SemVer](https://semver.org/).

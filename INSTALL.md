@@ -1,7 +1,7 @@
 # 📦 Guía de Instalación y Despliegue — AdminTools
 
-[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://projectjaina.com/)
-[![Repositorio](https://img.shields.io/badge/GitHub-DarckRovert%2FWanos__AdminTools-black?logo=github)](https://github.com/DarckRovert/Wanos_AdminTools)
+[![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Repositorio](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina__AdminTools-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_AdminTools)
 
 ## 📋 Requisitos Previos
 - **Cliente:** World of Warcraft 3.3.5a (Build 12340), en español (`esES`) o inglés (`enUS`).
@@ -18,7 +18,7 @@
 
 2. **Copiar o Clonar el Addon:**  
    ```bash
-   git clone https://github.com/DarckRovert/Wanos_AdminTools.git AdminTools
+   git clone https://github.com/DarckRovert/ProjectJaina_AdminTools.git AdminTools
    ```
 
 3. **Verificación de Estructura:**  
