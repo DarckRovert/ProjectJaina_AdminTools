@@ -1,27 +1,35 @@
-# 🛡️ Política de Seguridad y Mitigación de Vulnerabilidades — AdminTools
+# 🛡️ Política de Seguridad — ProjectJaina_AdminTools
 
-**Proyecto:** Ecosistema Project Jaina  
-**Repositorio Oficial:** [https://github.com/DarckRovert/ProjectJaina_AdminTools](https://github.com/DarckRovert/ProjectJaina_AdminTools)
-
----
-
-## 🔒 Modelo de Seguridad y Control de Acceso (RBAC)
-
-### 1. Despacho Basado en Intercepción del Servidor
-`AdminTools` actúa exclusivamente como una interfaz gráfica (GUI) de despacho de cadenas de texto. No ejecuta código privilegiado en el cliente ni elude la seguridad del emulador.
-- Todos los comandos son evaluados por la tabla `rbac_account_permissions` y el nivel de seguridad del emulador (AzerothCore/TrinityCore).
-- Si un usuario sin rango de GM hace clic en un botón, el emulador rechaza la ejecución del comando.
-
-### 2. Confirmación Obligatoria para Operaciones Críticas
-Comandos que comprometen la disponibilidad del reino (`.server restart`, `.server shutdown`, `.server shutdown cancel`) cuentan con cerrojos visuales mediante `StaticPopup_Show`, exigiendo confirmación explícita del operador antes del despacho.
-
-### 3. Mitigación de Desbordamiento de Buffer
-Toda cadena enviada a través de `RunCmd` es truncada a un máximo estricto de **255 bytes** (`cmd:sub(1, 255)`), previniendo saturación de paquetes de chat hacia el socket del servidor.
+**Proyecto:** Project Jaina  
+**Estándar de Seguridad:** Staff Software Engineer L9 (Mythos 5)  
+**Fecha de Actualización:** 10 de Octubre de 2026  
 
 ---
 
-## 🚨 Reporte de Vulnerabilidades
+## 1. Alcance y Filosofía de Seguridad
 
-Si detectas un comportamiento anómalo o brecha de seguridad:
-- Reporte directo al Staff de Project Jaina vía Discord Privado.
-- [GitHub Issues](https://github.com/DarckRovert/ProjectJaina_AdminTools/issues).
+La seguridad de **ProjectJaina_AdminTools** se fundamenta en el aislamiento estricto del entorno de ejecución de Lua 5.1 dentro del cliente World of Warcraft 3.3.5a (Build 12340) y en la validación autoritativa en el servidor.
+
+---
+
+## 2. Principios de Blindaje de Código
+
+1. **Aislamiento de FrameXML y Anti-Taint:**
+   - Las funciones que interactúan con botones de acción protegidos o macros de combate no contaminan las variables de entorno global seguras.
+   - Se evita estrictamente la modificación de tablas globales del sistema sin nombres de espacio propios (`PJ_*` o nombres de addon).
+2. **Límite de Red y Prevención de Desbordamiento:**
+   - La API `SendAddonMessage` está restringida a un máximo absoluto de **255 bytes por paquete**. Todo payload emitido se fragmenta o comprime en estructuras compactas.
+   - Prefijo auditado: `PJ_ADM`.
+3. **Validación Autoritativa en Servidor:**
+   - El cliente de interfaz es tratado como un medio de presentación potencialmente no confiable. Ninguna transacción de ítems, progreso, monedas o recompensas es decidida por el cliente; el servidor Eluna / C++ (`Scripts administrativos de Eluna y API SOAP (Puerto 7878)`) valida y aplica los cambios en MySQL.
+4. **Higiene de Strings y Sanitización:**
+   - Toda entrada de usuario proveniente de cajas de texto (`EditBox`) o comandos slash (`/adm, /pjadmin`) es limpiada contra inyecciones de secuencias de escape y caracteres nulos.
+
+---
+
+## 3. Reporte Responsable de Vulnerabilidades
+
+Si descubres una vulnerabilidad de seguridad o un vector de explotación en este AddOn:
+- **No lo divulgues públicamente.**
+- Notifícalo de inmediato a través del canal privado de ingeniería en el portal oficial: [Project Jaina Contacto](https://darckrovert.github.io/ProjectJaina_Web/).
+- El equipo técnico investigará y aplicará el parche correctivo de forma expedita.
