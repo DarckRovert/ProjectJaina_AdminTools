@@ -187,7 +187,7 @@ f:SetScript("OnMouseDown", function(self) self:Raise() end)
 f:Hide()
 tinsert(UISpecialFrames, "AdminToolsFrame")  -- ESC closes
 
-local title = MakeLabel(f, "|cFFFFD700Project Jaina|r |cFF00FFCCAdmin Tools|r |cFF888888v2.0.1|r", "GameFontHighlightLarge")
+local title = MakeLabel(f, "|cFFFFD700Project Jaina|r |cFF00FFCCAdmin Tools|r |cFF888888v2.1.0 (Living World)|r", "GameFontHighlightLarge")
 title:SetPoint("TOP", 0, -16)
 
 local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
@@ -215,7 +215,7 @@ runBtn:SetFrameStrata("HIGH")
 ---------------------------------------------------------------------------
 -- Tabs / pages
 ---------------------------------------------------------------------------
-local TABS = { "Tele", "Travel", "Self", "Char", "Party", "Summon", "Server", "Custom" }
+local TABS = { "Tele", "Travel", "Mundo", "Self", "Char", "Party", "Summon", "Server", "Custom" }
 local pages, tabButtons = {}, {}
 
 local function ShowPage(name)
@@ -230,9 +230,9 @@ end
 
 for i, name in ipairs(TABS) do
 	local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-	b:SetSize(62, 22)
-	b:SetText(name)
-	b:SetPoint("TOPLEFT", f, "TOPLEFT", 14 + (i - 1) * 64, -44)
+	b:SetSize(55, 22)
+	b:SetText(name == "Mundo" and "|cFF00FFCCMundo|r" or name)
+	b:SetPoint("TOPLEFT", f, "TOPLEFT", 14 + (i - 1) * 57, -44)
 	b:SetScript("OnClick", function() ShowPage(name) end)
 	tabButtons[name] = b
 
@@ -605,6 +605,70 @@ do
 		.. "tele\" to find it, then edit the tables in AdminTools.lua.")
 	note:SetJustifyH("LEFT")
 	note:SetPoint("TOPLEFT", p, "TOPLEFT", 8, -140)
+end
+
+---------------------------------------------------------------------------
+-- MUNDO (Baluartes de Hermandad, Galeon de los Desertores, Lore & Nucleo)
+---------------------------------------------------------------------------
+do
+	local p = pages["Mundo"]
+	local y = -2
+
+	-- Seccion 1: Baluartes de Hermandad
+	local hB = MakeLabel(p, "Baluartes de Hermandad (Soberania y Beneficios de Guild)", "GameFontNormal")
+	hB:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Censo Baluartes", ".outpost list" },
+		{ "Reset Todos",     ".outpost reset all" },
+		{ "Recargar Eluna",  ".reload ale" },
+	}, y)
+	y = y - 2
+
+	local hTele = MakeLabel(p, "Teletransporte a Enclaves (1-6):", "GameFontHighlightSmall")
+	hTele:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 14
+
+	y = FlowButtons(p, {
+		{ "1. Faro Theramore",   ".outpost tele 1" },
+		{ "2. Costas Azshara",   ".outpost tele 2" },
+		{ "3. Paramos Poniente", ".outpost tele 3" },
+		{ "4. Cabana Trabalomas",".outpost tele 4" },
+		{ "5. Caleta Faldir",    ".outpost tele 5" },
+		{ "6. Costa Feralas",    ".outpost tele 6" },
+	}, y)
+	y = y - 4
+
+	y = FormRow(p, y, "Reclamar Enclave (ID 1-6):", function(t) return ".outpost claim " .. t end, 100)
+	y = FormRow(p, y, "Reset Enclave (ID 1-6):",    function(t) return ".outpost reset " .. t end, 100)
+	y = y - 6
+
+	-- Seccion 2: Galeon de los Desertores
+	local hG = MakeLabel(p, "Galeon Dinamico de los Desertores (Costa de Theramore)", "GameFontNormal")
+	hG:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Estado Evento",   ".galleon status" },
+		{ "Forzar Alarma",   ".galleon alert" },
+		{ "Resetear Calma",  ".galleon reset" },
+		{ "Cubierta Galeon", ".galleon tele" },
+		{ "Escala de Agua",  ".galleon ladder" },
+		{ "Probar Canon",    ".galleon testcannon" },
+	}, y)
+	y = y - 2
+
+	-- Seccion 3: Lore & Nucleo
+	local hL = MakeLabel(p, "Puntos Estrategicos Lore & Mundo:", "GameFontHighlightSmall")
+	hL:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 14
+
+	y = FlowButtons(p, {
+		{ "Costa Desertores", ".go 4148.6 -2441.7 4.2 0" },
+		{ "Lady Jaina (Thera)", ".tele theramore" },
+		{ "Info Servidor",    ".server info" },
+	}, y)
 end
 
 ---------------------------------------------------------------------------

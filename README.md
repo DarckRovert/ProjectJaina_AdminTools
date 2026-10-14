@@ -1,7 +1,7 @@
 # 🛡️ Project Jaina — AdminTools (Panel Game Master & Administración)
 
 [![WoW Version](https://img.shields.io/badge/WoW-3.3.5a%20(12340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
-[![Core Compatibility](https://img.shields.io/badge/Core-AzerothCore%20%7C%20TrinityCore-red.svg)](https://github.com/azerothcore)
+[![Core Compatibility](https://img.shields.io/badge/Core-JainaCore%20%7C%20TrinityCore-red.svg)](https://github.com/jainacore)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina__AdminTools-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_AdminTools)
 [![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
@@ -26,7 +26,7 @@ Permite ejecutar de forma inmediata teletransportes masivos, invocación de PNJs
 
 ## ✨ Características Principales
 
-- **Intercepción Nativa de Comandos:** Envía comandos mediante el interceptor de chat de AzerothCore / TrinityCore, ejecutándose de manera silenciosa cuando la cuenta posee permisos RBAC / GM activos.
+- **Intercepción Nativa de Comandos:** Envía comandos mediante el interceptor de chat de JainaCore, ejecutándose de manera silenciosa cuando la cuenta posee permisos RBAC / GM activos.
 - **Saneamiento Tipográfico 3.3.5a:** Libre de secuencias de escape corruptas o emojis incompatibles con la fuente `FRIZQT__.TTF` del cliente WotLK.
 - **Barra de Ejecución Inmediata Siempre Visible:** Permite escribir cualquier comando en la parte inferior de la ventana sin importar la pestaña seleccionada.
 - **Persistencia de Configuración y Posición:** Guarda la última pestaña activa, coordenadas de la ventana y botones personalizados por cuenta en `AdminToolsDB`.
@@ -66,7 +66,7 @@ El addon responde a los siguientes comandos de consola:
 
 ### Requisitos Previos
 1. Cliente **World of Warcraft 3.3.5a (Build 12340)**.
-2. Servidor basado en **AzerothCore** o **TrinityCore** con permisos GM asignados a la cuenta (Nivel de seguridad 1 a 3 en `auth.account_access`).
+2. Servidor basado en **JainaCore** con permisos GM asignados a la cuenta (Nivel de seguridad 1 a 3 en `auth.account_access`).
 
 ### Instalación
 1. Clona o descarga este repositorio dentro del directorio de addons del cliente:

@@ -4,6 +4,15 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [2.1.0] — 2026-10-13
+### Living World Edition (Baluartes & Galeón de Desertores)
+- **Pestaña "Mundo" Exclusiva:** Incorporación de panel dedicado para supervisión y operación de los 6 Baluartes de Hermandad y el Galeón Dinámico de Theramore.
+- **Controles Baluartes:** Botones rápidos de censo (.outpost list), reseteo masivo (.outpost reset all), 6 teletransportes instantáneos a los enclaves, y formulario para asignación y reseteo por ID.
+- **Controles Galeón:** Consulta de fase y estado (.galleon status), disparo forzado de alarma costera (.galleon alert), reseteo a calma (.galleon reset), prueba de artillería de cubierta (.galleon testcannon) y teletransportes tácticos (Cubierta, Escala de Agua y Campamento de Playa).
+- **Diseño de 9 Pestañas Compacto:** Recalibración del ancho de pestaña a 55px con paso de 57px para integración estética perfecta sin solapamientos.
+
+---
+
 ## [1.0.1] — 2026-10-10
 ### Estabilización de Ecosistema y Gobernanza Oficial (Project Jaina)
 - **Normalización de UI y Gráficos:** Sustitución mandatoria de `.reload all` por `.reload ale` para prevenir caídas de C++ con bots activos, integración de comandos rápidos para HeroBot Jaina y aislamiento estricto fuera del paquete público.

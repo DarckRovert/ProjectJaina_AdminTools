@@ -5,7 +5,7 @@
 
 ## 📋 Requisitos Previos
 - **Cliente:** World of Warcraft 3.3.5a (Build 12340), en español (`esES`) o inglés (`enUS`).
-- **Servidor:** AzerothCore o TrinityCore (**Project Jaina — Project Jaina**).
+- **Servidor:** JainaCore o TrinityCore (**Project Jaina — Project Jaina**).
 - **Cuenta con Rango GM:** Nivel de seguridad `1` (Moderador), `2` (Game Master) o `3` (Administrador).
 
 ---

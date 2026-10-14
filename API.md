@@ -4,7 +4,7 @@
 [![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 
 ## 📌 Resumen Arquitectónico
-Panel gráfico por pestañas para Game Masters y administradores de servidores 3.3.5a (TrinityCore / AzerothCore). Intercepta y emite comandos del servidor mediante `SendChatMessage` en el canal `SAY`.
+Panel gráfico por pestañas para Game Masters y administradores de servidores 3.3.5a (TrinityCore / JainaCore). Intercepta y emite comandos del servidor mediante `SendChatMessage` en el canal `SAY`.
 
 - **Rol en el Ecosistema:** Módulo Oficial #20 — Panel de Administración & Game Master
 - **Archivo Principal TOC:** `AdminTools.toc`
