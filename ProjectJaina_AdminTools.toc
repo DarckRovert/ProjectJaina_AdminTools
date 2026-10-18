@@ -1,8 +1,8 @@
 ## Interface: 30300
-## Title: |cFFFFD700Project Jaina|r - |cFF00FFCCAdminTools & Panel Game Master|r
-## Notes: Panel integral de comandos de administración, teletransporte, trampas, gestión de personajes y control de servidor para World of Warcraft 3.3.5a (Project Jaina).
-## Author: valdrea (Adaptación oficial Project Jaina Dev Team)
-## Version: 2.1.0
+## Title: |cFFFFD700Project Jaina|r - |cFF00FFCCAdminTools Supreme GM Suite|r
+## Notes: Panel integral de comandos de administración suprema, inspección y edición de armería en vivo, trampas divinas, gestión de personajes, bots y control de servidor para World of Warcraft 3.3.5a (Project Jaina).
+## Author: valdrea & DarckRovert (Project Jaina Dev Team)
+## Version: 3.0.0-Supreme
 ## X-Category: Admin / GM Tools
 ## X-Website: https://github.com/DarckRovert/ProjectJaina_AdminTools
 ## X-License: MIT
@@ -10,3 +10,4 @@
 ## SavedVariables: AdminToolsDB
 
 AdminTools.lua
+AdminToolsArmory.lua

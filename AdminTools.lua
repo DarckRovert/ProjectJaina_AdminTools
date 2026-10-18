@@ -29,7 +29,18 @@ local function RunCmd(cmd)
 	if cmd == "" then return end
 	if cmd:sub(1, 1) ~= "." then cmd = "." .. cmd end
 	if #cmd > 255 then cmd = cmd:sub(1, 255) end
-	SendChatMessage(cmd, "SAY")
+
+	-- Silent execution via editbox prevents rejected GM commands from leaking to public /say
+	local eb = ChatEdit_GetActiveWindow and ChatEdit_GetActiveWindow() or ChatFrame1EditBox
+	if eb then
+		local oldText = eb:GetText()
+		eb:SetText(cmd)
+		ChatEdit_SendText(eb, 0)
+		eb:SetText(oldText or "")
+	else
+		SendChatMessage(cmd, "SAY")
+	end
+
 	if not AdminToolsDB or AdminToolsDB.echo ~= false then
 		DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina Admin]|r " .. cmd)
 	end
@@ -84,14 +95,15 @@ local function MakeLabel(parent, text, template)
 	return fs
 end
 
--- lay out a list of {label, cmd} buttons in a 3-wide grid; returns next Y
-local function FlowButtons(page, defs, startY)
-	local cols = 3
+-- lay out a list of {label, cmd} buttons in a grid (default 3-wide); returns next Y
+local function FlowButtons(page, defs, startY, customCols, customW)
+	local cols = customCols or 3
+	local w = customW or BTN_W
 	for i, d in ipairs(defs) do
 		local col = (i - 1) % cols
 		local row = floor((i - 1) / cols)
-		local b = MakeButton(page, d[1], BTN_W, d[2])
-		b:SetPoint("TOPLEFT", page, "TOPLEFT", 4 + col * (BTN_W + PAD), startY - row * (BTN_H + PAD))
+		local b = MakeButton(page, d[1], w, d[2])
+		b:SetPoint("TOPLEFT", page, "TOPLEFT", 4 + col * (w + PAD), startY - row * (BTN_H + PAD))
 	end
 	return startY - ceil(#defs / cols) * (BTN_H + PAD) - PAD
 end
@@ -164,7 +176,7 @@ end
 -- Main frame
 ---------------------------------------------------------------------------
 local f = CreateFrame("Frame", "AdminToolsFrame", UIParent)
-f:SetSize(550, 484)
+f:SetSize(670, 520)
 f:SetPoint("CENTER")
 f:SetBackdrop({
 	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -187,26 +199,26 @@ f:SetScript("OnMouseDown", function(self) self:Raise() end)
 f:Hide()
 tinsert(UISpecialFrames, "AdminToolsFrame")  -- ESC closes
 
-local title = MakeLabel(f, "|cFFFFD700Project Jaina|r |cFF00FFCCAdmin Tools|r |cFF888888v2.1.0 (Living World)|r", "GameFontHighlightLarge")
-title:SetPoint("TOP", 0, -16)
+local title = MakeLabel(f, "|cFFFFD700Project Jaina|r |cFF00FFCCAdmin Tools|r |cFFFFFFFFv3.0 (Supreme GM Edition)|r", "GameFontHighlightLarge")
+title:SetPoint("TOP", 0, -14)
 
 local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
 close:SetPoint("TOPRIGHT", -8, -8)
 
 -- bottom command bar (always visible).  Strata bumped to HIGH so dense tab
 -- content (e.g. Tele/Travel) can never visually overlap the typed text.
-local cmdLabel = MakeLabel(f, "Command:")
-cmdLabel:SetPoint("BOTTOMLEFT", 22, 22)
+local cmdLabel = MakeLabel(f, "Comando:")
+cmdLabel:SetPoint("BOTTOMLEFT", 20, 18)
 local cmdBox = CreateFrame("EditBox", nil, f, "InputBoxTemplate")
-cmdBox:SetSize(300, 20)
-cmdBox:SetPoint("LEFT", cmdLabel, "RIGHT", 10, 0)
+cmdBox:SetSize(440, 20)
+cmdBox:SetPoint("LEFT", cmdLabel, "RIGHT", 8, 0)
 cmdBox:SetAutoFocus(false)
 cmdBox:SetFrameStrata("HIGH")
 cmdBox:SetScript("OnEscapePressed", cmdBox.ClearFocus)
 cmdBox:SetScript("OnEnterPressed", function(self)
 	RunCmd(self:GetText()); self:SetText(""); self:ClearFocus()
 end)
-local runBtn = MakeButton(f, "Run", 44, function()
+local runBtn = MakeButton(f, "Ejecutar", 66, function()
 	RunCmd(cmdBox:GetText()); cmdBox:SetText("")
 end)
 runBtn:SetPoint("LEFT", cmdBox, "RIGHT", 8, 0)
@@ -215,7 +227,7 @@ runBtn:SetFrameStrata("HIGH")
 ---------------------------------------------------------------------------
 -- Tabs / pages
 ---------------------------------------------------------------------------
-local TABS = { "Tele", "Travel", "Mundo", "Self", "Char", "Party", "Summon", "Server", "Custom" }
+local TABS = { "Tele", "Travel", "Mundo", "God", "Armería", "Char", "Party", "Bots", "Summon", "Server", "Custom" }
 local pages, tabButtons = {}, {}
 
 local function ShowPage(name)
@@ -230,15 +242,21 @@ end
 
 for i, name in ipairs(TABS) do
 	local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-	b:SetSize(55, 22)
-	b:SetText(name == "Mundo" and "|cFF00FFCCMundo|r" or name)
-	b:SetPoint("TOPLEFT", f, "TOPLEFT", 14 + (i - 1) * 57, -44)
+	b:SetSize(56, 22)
+	local label = name
+	if name == "God" then label = "|cFFFF4444God|r"
+	elseif name == "Armería" then label = "|cFF00FFCCArmería|r"
+	elseif name == "Mundo" then label = "|cFFFFFF00Mundo|r"
+	elseif name == "Bots" then label = "|cFF44FF44Bots|r"
+	end
+	b:SetText(label)
+	b:SetPoint("TOPLEFT", f, "TOPLEFT", 14 + (i - 1) * 58, -42)
 	b:SetScript("OnClick", function() ShowPage(name) end)
 	tabButtons[name] = b
 
 	local p = CreateFrame("Frame", nil, f)
-	p:SetPoint("TOPLEFT", f, "TOPLEFT", 18, -74)
-	p:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -18, 50)
+	p:SetPoint("TOPLEFT", f, "TOPLEFT", 18, -70)
+	p:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -18, 48)
 	p:Hide()
 	pages[name] = p
 end
@@ -349,6 +367,21 @@ local function BuildMenu(globalName, dataTable)
 	UIDropDownMenu_Initialize(menu, init, "MENU")
 	return function() ToggleDropDownMenu(1, nil, menu, "cursor", 0, 0) end
 end
+
+---------------------------------------------------------------------------
+-- AdminTools Core API Export (Consumed by AdminToolsArmory.lua & Ecosystem)
+---------------------------------------------------------------------------
+AdminTools = AdminTools or {}
+AdminTools.RunCmd = RunCmd
+AdminTools.MakeButton = MakeButton
+AdminTools.MakeEdit = MakeEdit
+AdminTools.MakeLabel = MakeLabel
+AdminTools.BuildMenu = BuildMenu
+AdminTools.FlowButtons = FlowButtons
+AdminTools.FormRow = FormRow
+AdminTools.FormRow2 = FormRow2
+AdminTools.pages = pages
+AdminTools.ShowPage = ShowPage
 
 -- 5-man dungeons, grouped by expansion, ordered by level.  Teleports land
 -- just outside the entrance.  Most are ".tele <game_tele name>"; entries that
@@ -672,60 +705,246 @@ do
 end
 
 ---------------------------------------------------------------------------
--- SELF
+-- GOD (Poder Supremo, Inmortalidad, Vuelo, Velocidad, Morphs y Trampas)
 ---------------------------------------------------------------------------
 do
-	local p = pages["Self"]
-	FlowButtons(p, {
-		{ "GM On",  ".gm on" },        { "GM Off", ".gm off" },        { "GM Chat", ".gmchat" },
-		{ "Visible On", ".gm visible on" }, { "Visible Off", ".gm visible off" }, { "GM List", ".gm ingame" },
-		{ "Fly On", ".gm fly on" },     { "Fly Off", ".gm fly off" },   { "Revive", ".revive" },
-		{ "WaterWalk On", ".aura 546" }, { "WaterWalk Off", ".unaura 546" }, { "Remove Auras", ".unaura all" },
-		{ "Clear CDs", ".cooldown clear" }, { "Explore Map", ".explorecheat 1" }, { "Max Skills", ".maxskill" },
-		{ "Speed 1", ".modify speed 1" }, { "Speed 4", ".modify speed 4" }, { "Speed 7", ".modify speed 7" },
-		{ "Speed 10", ".modify speed 10" }, { "Scale 1", ".modify scale 1" }, { "Scale 0.5", ".modify scale 0.5" },
-	}, -4)
+	local p = pages["God"]
+	local y = -2
+
+	local hGod = MakeLabel(p, "Autoridad Divina & Trampas de Servidor (God Mode):", "GameFontNormal")
+	hGod:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "God Mode On/Off", ".cheat god" },
+		{ "Zero CDs (.cheat cd)", ".cheat cd" },
+		{ "Instant Cast", ".cheat cast" },
+		{ "Poder Infinito", ".cheat power" },
+		{ "Vuelo On", ".gm fly on" },
+		{ "Vuelo Off", ".gm fly off" },
+		{ "Invisibilidad On", ".gm visible off" },
+		{ "Invisibilidad Off", ".gm visible on" },
+		{ "Caminar Agua", ".cheat waterwalk" },
+		{ "Revivir", ".revive" },
+		{ "Morir / Suicidio", ".die" },
+		{ "Limpiar Auras", ".unaura all" },
+		{ "Max Habilidades", ".maxskill" },
+		{ "Explorar Mapa", ".explorecheat 1" },
+		{ "Limpiar CDs Target", ".cooldown clear" },
+		{ "Modo GM On", ".gm on" },
+		{ "Modo GM Off", ".gm off" },
+		{ "GM Chat On/Off", ".gmchat" },
+	}, y, 4, 150)
+	y = y - 4
+
+	local hSpd = MakeLabel(p, "Modificadores de Velocidad (.modify speed):", "GameFontHighlightSmall")
+	hSpd:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Speed 1 (Normal)", ".modify speed 1" },
+		{ "Speed 2 (2x)",      ".modify speed 2" },
+		{ "Speed 3 (3x)",      ".modify speed 3" },
+		{ "Speed 5 (5x)",      ".modify speed 5" },
+		{ "Speed 7 (7x)",      ".modify speed 7" },
+		{ "Speed 10 (10x)",    ".modify speed 10" },
+		{ "Speed 15 (15x)",    ".modify speed 15" },
+		{ "Speed 25 (Ultra)",  ".modify speed 25" },
+	}, y, 4, 150)
+	y = y - 4
+
+	local hScale = MakeLabel(p, "Modificadores de Escala & Tamaño (.modify scale):", "GameFontHighlightSmall")
+	hScale:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Escala 0.25 (Mini)", ".modify scale 0.25" },
+		{ "Escala 0.5",        ".modify scale 0.5" },
+		{ "Escala 1.0 (Normal)",".modify scale 1" },
+		{ "Escala 1.5",        ".modify scale 1.5" },
+		{ "Escala 2.5 (Gigante)",".modify scale 2.5" },
+		{ "Escala 5.0 (Colosal)",".modify scale 5" },
+		{ "Des-transformar",   ".demorph" },
+		{ "Lady Jaina (28227)", ".morph 28227" },
+	}, y, 4, 150)
+	y = y - 4
+
+	local hMorph = MakeLabel(p, "Metamorfosis Legendarias Rápidas:", "GameFontHighlightSmall")
+	hMorph:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Lich King (29720)",   ".morph 29720" },
+		{ "Illidan (21108)",     ".morph 21108" },
+		{ "Sylvanas (28213)",    ".morph 28213" },
+		{ "Ragnaros (11121)",    ".morph 11121" },
+	}, y, 4, 150)
+	y = y - 2
+
+	y = FormRow(p, y, "Metamorfosis (ID):", function(t) return ".morph " .. t end, 160)
 end
 
 ---------------------------------------------------------------------------
--- CHAR
+-- ARMERÍA (Live Equipment Editor, Inspección 19 slots, Gestión de Gear)
+---------------------------------------------------------------------------
+do
+	local p = pages["Armería"]
+	p:SetScript("OnShow", function(self)
+		if AdminTools and AdminTools.InitArmory then
+			AdminTools.InitArmory(self)
+		end
+	end)
+end
+
+---------------------------------------------------------------------------
+-- CHAR (Manipulación Total de Nivel, Oro Real y Personaje / Bots)
 ---------------------------------------------------------------------------
 do
 	local p = pages["Char"]
-	local y = FlowButtons(p, {
-		{ "Level +1", ".levelup 1" }, { "Level +5", ".levelup 5" }, { "Level +10", ".levelup 10" },
-		{ "Level -1", ".levelup -1" }, { "Reset Talents", ".reset talents" }, { "Reset Spells", ".reset spells" },
-		{ "Learn Class", ".learn all_myclass" }, { "Learn All Spells", ".learn all_myspells" }, { "Learn Talents", ".learn all_mytalents" },
-		{ "Learn Recipes", ".learn all_recipes" }, { "Learn Langs", ".learn all_lang" }, { "Learn GM Spells", ".learn all_gm" },
-		{ "Repair Items", ".repairitems" }, { "+100g", ".modify money 1000000" }, { "+1000g", ".modify money 10000000" },
-	}, -4)
+	local y = -2
 
-	-- free max-capacity bags (22-slot Glacial Bag, itemID 41600)
-	local bag1 = MakeButton(p, "Free Max Bag x1", BTN_W, ".additem " .. MAX_BAG_ID .. " 1")
-	bag1:SetPoint("TOPLEFT", p, "TOPLEFT", 4, y)
-	local bag4 = MakeButton(p, "Free Max Bags x4", BTN_W, ".additem " .. MAX_BAG_ID .. " 4")
-	bag4:SetPoint("TOPLEFT", p, "TOPLEFT", 4 + (BTN_W + PAD), y)
-	local mnt = MakeButton(p, "Monturas v", BTN_W, openMounts)
-	mnt:SetPoint("TOPLEFT", p, "TOPLEFT", 4 + 2 * (BTN_W + PAD), y)
-	y = y - (BTN_H + PAD) - 2
+	-- Cabecera con objetivo dinámico
+	local targetBanner = MakeLabel(p, "Objetivo Activo: Cargando...", "GameFontHighlightLarge")
+	targetBanner:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 20
 
-	y = FormRow2(p, y, "Add item (id  qty):", function(a, b)
+	local function UpdateCharTargetBanner()
+		local unit = UnitExists("target") and "target" or "player"
+		local name = UnitName(unit) or "Desconocido"
+		local lvl = UnitLevel(unit) or 0
+		local class = UnitClass(unit) or "Clase"
+		local isPlayer = UnitIsPlayer(unit)
+		local tag = (unit == "player") and "|cFFFFD700[TÚ MISMO]|r" or (isPlayer and "|cFF00FF00[JUGADOR / BOT]|r" or "|cFFFF8800[NPC]|r")
+		targetBanner:SetText(string.format("Objetivo: |cFFFFD100%s|r (%s) | Nivel: |cFFFFFFFF%s|r | Clase: |cFFFFFFFF%s|r", name, tag, (lvl > 0 and tostring(lvl) or "??"), class))
+	end
+
+	local watcher = CreateFrame("Frame", nil, p)
+	watcher:RegisterEvent("PLAYER_TARGET_CHANGED")
+	watcher:SetScript("OnEvent", function() UpdateCharTargetBanner() end)
+	p:SetScript("OnShow", function() UpdateCharTargetBanner() end)
+
+	local function GetTargetName()
+		if UnitExists("target") then
+			return UnitName("target")
+		end
+		return UnitName("player")
+	end
+
+	-- Sección 1: Manipulación Directa de Nivel
+	local hLvl = MakeLabel(p, "Manipulación de Nivel Instantáneo (.character level / .levelup):", "GameFontNormal")
+	hLvl:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Fijar Nivel 80", function() RunCmd(".character level " .. GetTargetName() .. " 80") end },
+		{ "Fijar Nivel 70", function() RunCmd(".character level " .. GetTargetName() .. " 70") end },
+		{ "Fijar Nivel 60", function() RunCmd(".character level " .. GetTargetName() .. " 60") end },
+		{ "Fijar Nivel 1",  function() RunCmd(".character level " .. GetTargetName() .. " 1") end },
+		{ "Nivel +1",       ".levelup 1" },
+		{ "Nivel +5",       ".levelup 5" },
+		{ "Nivel +10",      ".levelup 10" },
+		{ "Nivel -1",       ".levelup -1" },
+	}, y, 4, 150)
+	y = y - 2
+
+	y = FormRow(p, y, "Fijar Nivel Objetivo (1-80):", function(t)
+		local lvl = tonumber(t) or 80
+		return ".character level " .. GetTargetName() .. " " .. lvl
+	end, 140)
+
+	-- Sección 2: Manipulación de Oro en Unidades Reales (1 Oro = 10,000 Cobre)
+	local hGold = MakeLabel(p, "Economía y Oro en Unidades Reales (.modify money):", "GameFontNormal")
+	hGold:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "+100 Oro",       ".modify money 1000000" },
+		{ "-100 Oro",       ".modify money -1000000" },
+		{ "+500 Oro",       ".modify money 5000000" },
+		{ "+1,000 Oro",     ".modify money 10000000" },
+		{ "-1,000 Oro",     ".modify money -10000000" },
+		{ "+5,000 Oro",     ".modify money 50000000" },
+		{ "+10,000 Oro",    ".modify money 100000000" },
+		{ "Oro Máx (214k)", ".modify money 2147483647" },
+	}, y, 4, 150)
+	y = y - 2
+
+	-- Formulario de oro personalizado en unidades reales
+	local lblGoldCustom = MakeLabel(p, "Oro a Medida (g):")
+	lblGoldCustom:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y - 5)
+	local eGold = MakeEdit(p, 100)
+	eGold:SetPoint("TOPLEFT", p, "TOPLEFT", 122, y)
+
+	local btnGiveGold = MakeButton(p, "Dar Oro", 80, function()
+		local g = tonumber(strtrim(eGold:GetText() or "0")) or 0
+		if g > 0 then
+			local copper = floor(g * 10000)
+			RunCmd(".modify money " .. copper)
+			eGold:SetText("")
+			eGold:ClearFocus()
+		end
+	end)
+	btnGiveGold:SetPoint("LEFT", eGold, "RIGHT", 6, 0)
+
+	local btnTakeGold = MakeButton(p, "Quitar Oro", 80, function()
+		local g = tonumber(strtrim(eGold:GetText() or "0")) or 0
+		if g > 0 then
+			local copper = floor(g * 10000)
+			RunCmd(".modify money -" .. copper)
+			eGold:SetText("")
+			eGold:ClearFocus()
+		end
+	end)
+	btnTakeGold:SetPoint("LEFT", btnGiveGold, "RIGHT", 6, 0)
+
+	local btnZeroGold = MakeButton(p, "Vaciar Oro (0g)", 100, function()
+		RunCmd(".modify money -2147483647")
+	end)
+	btnZeroGold:SetPoint("LEFT", btnTakeGold, "RIGHT", 6, 0)
+
+	y = y - 26
+
+	-- Sección 3: Hechizos, Talentos, Bolsas y Monturas
+	local hSpells = MakeLabel(p, "Habilidades, Hechizos, Bolsas y Monturas:", "GameFontNormal")
+	hSpells:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Aprender Hechizos", ".learn all_myspells" },
+		{ "Aprender Clase",    ".learn all_myclass" },
+		{ "Aprender Talentos", ".learn all_mytalents" },
+		{ "Aprender Recetas",  ".learn all_recipes" },
+		{ "Idiomas",           ".learn all_lang" },
+		{ "Hechizos GM",       ".learn all_gm" },
+		{ "Reset Talentos",    ".reset talents" },
+		{ "Reset Hechizos",    ".reset spells" },
+		{ "Reset Stats",       ".reset stats" },
+		{ "Reparar Todo",      ".repairitems" },
+		{ "Bolsa 22c x1",      ".additem 41600 1" },
+		{ "Bolsas 22c x4",     ".additem 41600 4" },
+	}, y, 4, 150)
+	y = y - 2
+
+	local mntBtn = MakeButton(p, "Catálogo de Monturas v", 200, openMounts)
+	mntBtn:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 28
+
+	y = FormRow2(p, y, "Añadir ítem (id cant):", function(a, b)
 		if b == "" then b = "1" end
 		return ".additem " .. a .. " " .. b
 	end)
-	y = FormRow(p, y, "Add item set:",   function(t) return ".additemset " .. t end)
-	y = FormRow(p, y, "Set level:",      function(t) return ".character level " .. t end)
-	y = FormRow(p, y, "Give money (c):", function(t) return ".modify money " .. t end)
+	y = FormRow(p, y, "Añadir Conjunto Set:", function(t) return ".additemset " .. t end)
 end
 
 ---------------------------------------------------------------------------
--- PARTY (other players)
+-- PARTY (other players & moderation)
 ---------------------------------------------------------------------------
 do
 	local p = pages["Party"]
 	local y = FlowButtons(p, {
 		{ "Summon My Group", ".groupsummon" }, { "Recall Target", ".recall" }, { "Kill Target", ".die" },
 		{ "Revive Target", ".revive" },        { "Freeze", ".freeze" },        { "Unfreeze", ".unfreeze" },
+		{ "Mute 1 Hour", ".mute 60" },         { "Unmute Target", ".unmute" }, { "Kick Target", ".kick" },
 	}, -4)
 
 	y = FormRow(p, y - 4, "Appear to:",   function(t) return ".appear " .. t end)
@@ -733,6 +952,89 @@ do
 	y = FormRow(p, y,     "Player info:", function(t) return ".pinfo " .. t end)
 	y = FormRow(p, y,     "Revive:",      function(t) return ".revive " .. t end)
 	y = FormRow(p, y,     "Kick:",        function(t) return ".kick " .. t end)
+end
+
+---------------------------------------------------------------------------
+-- BOTS (Gestión Táctica, Invocación y Control de Playerbots)
+---------------------------------------------------------------------------
+do
+	local p = pages["Bots"]
+	local y = -2
+
+	local hRdf = MakeLabel(p, "Escuadrón Automatizado para Mazmorras y Bandas:", "GameFontNormal")
+	hRdf:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Auto-Llenar RDF (.rdf bots)", ".rdf bots" },
+		{ "Desbandar Bots (.rdf reset)",  ".rdf reset" },
+		{ "Forzar Auto-Equipar",          function() SendChatMessage("equip", "PARTY") end },
+		{ "Expulsar Bots (*)",            ".bot remove *" },
+	}, y, 4, 150)
+	y = y - 6
+
+	local hSumm = MakeLabel(p, "Invocación Individual de Bots por Rol y Clase:", "GameFontNormal")
+	hSumm:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	-- Tanques
+	local hTank = MakeLabel(p, "Tanques:", "GameFontHighlightSmall")
+	hTank:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 14
+
+	y = FlowButtons(p, {
+		{ "Paladín Tanque",  ".bot addclass paladin" },
+		{ "Guerrero Tanque", ".bot addclass warrior" },
+		{ "DK Tanque",       ".bot addclass dk" },
+		{ "Druida Oso",      ".bot addclass druid" },
+	}, y, 4, 150)
+	y = y - 4
+
+	-- Sanadores
+	local hHeal = MakeLabel(p, "Sanadores (Healers):", "GameFontHighlightSmall")
+	hHeal:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 14
+
+	y = FlowButtons(p, {
+		{ "Sacerdote Sagrado", ".bot addclass priest" },
+		{ "Druida Resto",      ".bot addclass druid" },
+		{ "Chamán Resto",      ".bot addclass shaman" },
+		{ "Paladín Sagrado",   ".bot addclass paladin" },
+	}, y, 4, 150)
+	y = y - 4
+
+	-- DPS
+	local hDps = MakeLabel(p, "Daño (DPS CaC y a Distancia):", "GameFontHighlightSmall")
+	hDps:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 14
+
+	y = FlowButtons(p, {
+		{ "Mago (DPS Rango)",     ".bot addclass mage" },
+		{ "Brujo (DPS Rango)",    ".bot addclass warlock" },
+		{ "Cazador (DPS Físico)", ".bot addclass hunter" },
+		{ "Pícaro (DPS Melée)",   ".bot addclass rogue" },
+	}, y, 4, 150)
+	y = y - 6
+
+	-- Órdenes y Estrategias
+	local hOrders = MakeLabel(p, "Órdenes de Combate & Movimiento:", "GameFontNormal")
+	hOrders:SetPoint("TOPLEFT", p, "TOPLEFT", 6, y)
+	y = y - 16
+
+	y = FlowButtons(p, {
+		{ "Seguir Líder",       function() SendChatMessage("follow", "PARTY") end },
+		{ "Quedarse Quieto",    function() SendChatMessage("stay", "PARTY") end },
+		{ "Atacar Objetivo",    function() SendChatMessage("attack", "PARTY") end },
+		{ "Huir / Retirada",    function() SendChatMessage("flee", "PARTY") end },
+		{ "Estrategia Tank",    ".playerbots role tank" },
+		{ "Estrategia Heal",    ".playerbots role heal" },
+		{ "Estrategia DPS",     ".playerbots role dps" },
+		{ "Regear Bot 80 Épico",".playerbots role regear 80" },
+	}, y, 4, 150)
+	y = y - 2
+
+	y = FormRow(p, y, "Añadir Bot por Nombre:", function(t) return ".bot add " .. t end, 160)
+	y = FormRow(p, y, "Expulsar Bot (Nombre):",  function(t) return ".bot remove " .. t end, 160)
 end
 
 ---------------------------------------------------------------------------
@@ -900,7 +1202,11 @@ ev:SetScript("OnEvent", function(self, event, name)
 		f:SetPoint(AdminToolsDB.pos[1], UIParent, AdminToolsDB.pos[2], AdminToolsDB.pos[3], AdminToolsDB.pos[4])
 	end
 	RefreshCustom()
-	ShowPage(AdminToolsDB.tab or "Tele")
+	local activeTab = AdminToolsDB.tab or "Tele"
+	ShowPage(activeTab)
+	if activeTab == "Armería" and AdminTools and AdminTools.InitArmory then
+		AdminTools.InitArmory(pages["Armería"])
+	end
 	self:UnregisterEvent("ADDON_LOADED")
-	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools|r v2.0.1 cargado. Usa |cFFFFD700/admin|r, |cFFFFD700/wpadm|r o |cFFFFD700/wpgm|r.")
+	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools Supreme GM Suite|r |cFFFFFFFFv3.0.0|r cargado exitosamente. Usa |cFFFFD700/admin|r, |cFFFFD700/wpadm|r o |cFFFFD700/wpgm|r.")
 end)
