@@ -1,6 +1,6 @@
 # 🌐 Registro de Ecosistema — ProjectJaina_AdminTools
 
-Ficha técnica oficial de registro en la infraestructura multi-addon de **Project Jaina - Project Jaina**.
+Ficha técnica oficial de registro en la infraestructura multi-addon de **Project Jaina**.
 
 ---
 
@@ -34,6 +34,6 @@ Ficha técnica oficial de registro en la infraestructura multi-addon de **Projec
 | Módulo Coexistente | Modo de Interacción | Flujo de Datos |
 |---|---|---|
 | **`ProjectJaina_GMGenie`** | Complementariedad Staff | `GMGenie` administra la cola de tickets y telemetría de jugadores; `AdminTools` ejecuta acciones masivas de desarrollo y comandos directos. |
-| **`ProjectJaina_ProjectJaina_IntiObjGPS`** | Sinergia Espacial | `ProjectJaina_IntiObjGPS` captura coordenadas exactas de GameObjects; `AdminTools` provee teletransporte inmediato y pruebas en vivo. |
+| **`ProjectJaina_IntiObjGPS`** | Sinergia Espacial | `ProjectJaina_IntiObjGPS` captura coordenadas exactas de GameObjects; `AdminTools` provee teletransporte inmediato y pruebas en vivo. |
 | **`ProjectJaina_Graphics`** | Armonía Visual | Se beneficia del renderizado nítido sin artefactos visuales ni escalado borroso. |
 | **`ACP` (Addon Control Panel)** | Control de Carga | Permite ser activado o desactivado en caliente sin requerir reinicio del cliente. |

@@ -1,7 +1,7 @@
 # 🔌 Especificación Técnica y API — AdminTools
 
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina__AdminTools-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_AdminTools)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-Project%20Jaina%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 
 ## 📌 Resumen Arquitectónico
 Panel gráfico por pestañas para Game Masters y administradores de servidores 3.3.5a (TrinityCore / JainaCore). Intercepta y emite comandos del servidor mediante `SendChatMessage` en el canal `SAY`.

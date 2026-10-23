@@ -4,7 +4,7 @@
 [![Core Compatibility](https://img.shields.io/badge/Core-JainaCore%20%7C%20TrinityCore-red.svg)](https://github.com/jainacore)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina__AdminTools-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_AdminTools)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-WoW%20Per%C3%BA%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-Project%20Jaina%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 
 Suite administrativa in-game de comandos y herramientas para **Game Masters (GMs)** y administradores de servidores privados de **World of Warcraft 3.3.5a (WotLK Build 12340)**, adaptada e integrada oficialmente en el ecosistema de **Project Jaina — Project Jaina**.
 
@@ -88,9 +88,9 @@ El addon responde a los siguientes comandos de consola:
 
 ## 🌐 Integración con el Ecosistema
 
-Este addon es el **Módulo Oficial #20** de la infraestructura tecnológica de **Project Jaina - Project Jaina**, coexistiendo armónicamente con:
+Este addon es el **Módulo Oficial #20** de la infraestructura tecnológica de **Project Jaina**, coexistiendo armónicamente con:
 - `ProjectJaina_GMGenie`: Suite de tickets y soporte a jugadores.
-- `ProjectJaina_ProjectJaina_IntiObjGPS`: Captura de coordenadas de GameObjects.
+- `ProjectJaina_IntiObjGPS`: Captura de coordenadas de GameObjects.
 - `ProjectJaina_Companion`: Bus de comunicación y telemetría comunitaria.
 - `ProjectJaina_Graphics`: Renderizado de interfaz cristalina nativa.
 
