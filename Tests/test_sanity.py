@@ -16,7 +16,7 @@ def test_admin_tools_sanity():
         "README.md", "CHANGELOG.md", "LICENSE", "NOTICE.md",
         "API.md", "AGENTS.md", "INSTALL.md", "SECURITY.md",
         "ECOSYSTEM_REGISTRY.md", ".gitignore", ".gitattributes",
-        "AdminTools.toc", "AdminTools.lua"
+        "ProjectJaina_AdminTools.toc", "AdminTools.lua"
     ]
     for doc in required_docs:
         path = os.path.join(base_dir, doc)
@@ -24,12 +24,12 @@ def test_admin_tools_sanity():
     print("[PASS] All required repository documentation files exist.")
 
     # 2. Verify TOC
-    toc_path = os.path.join(base_dir, "AdminTools.toc")
+    toc_path = os.path.join(base_dir, "ProjectJaina_AdminTools.toc")
     with open(toc_path, "r", encoding="utf-8") as f:
         toc_content = f.read()
     assert "AdminTools.lua" in toc_content, "TOC missing AdminTools.lua"
     assert "30300" in toc_content, "TOC invalid interface version"
-    assert "2.0.1" in toc_content, "TOC version mismatch"
+    assert "3.0.0-Supreme" in toc_content, "TOC version mismatch"
     assert "X-Ecosystem-Module: #20" in toc_content, "TOC missing module #20 tag"
     print("[PASS] TOC structure and metadata validated.")
 
@@ -53,9 +53,9 @@ def test_admin_tools_sanity():
     print("[PASS] Unicode glyph hygiene validated (zero corrupt characters).")
 
     # 5. Verify Slash Commands
-    assert "SLASH_ADMINTOOLS3 = \"/wpadm\"" in raw_code, "Missing /wpadm slash command"
-    assert "SLASH_ADMINTOOLS4 = \"/wpgm\"" in raw_code, "Missing /wpgm slash command"
-    print("[PASS] Project Jaina slash command suite validated (/admin, /adt, /wpadm, /wpgm, /admintools).")
+    assert "SLASH_ADMINTOOLS3 = \"/jainadm\"" in raw_code, "Missing /jainadm slash command"
+    assert "SLASH_ADMINTOOLS4 = \"/jainagmtools\"" in raw_code, "Missing /jainagmtools slash command"
+    print("[PASS] Project Jaina slash command suite validated (/admin, /adt, /jainadm, /jainagmtools, /admintools).")
 
     print("\n>>> ALL WOWPERU_ADMINTOOLS SANITY CHECKS PASSED 100% <<<")
 

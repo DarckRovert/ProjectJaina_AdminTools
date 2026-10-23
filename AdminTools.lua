@@ -1182,8 +1182,8 @@ end
 ---------------------------------------------------------------------------
 SLASH_ADMINTOOLS1 = "/admin"
 SLASH_ADMINTOOLS2 = "/adt"
-SLASH_ADMINTOOLS3 = "/wpadm"
-SLASH_ADMINTOOLS4 = "/wpgm"
+SLASH_ADMINTOOLS3 = "/jainadm"
+SLASH_ADMINTOOLS4 = "/jainagmtools"
 SLASH_ADMINTOOLS5 = "/admintools"
 SlashCmdList["ADMINTOOLS"] = function(msg)
 	msg = strtrim(msg or "")
@@ -1208,5 +1208,5 @@ ev:SetScript("OnEvent", function(self, event, name)
 		AdminTools.InitArmory(pages["Armería"])
 	end
 	self:UnregisterEvent("ADDON_LOADED")
-	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools Supreme GM Suite|r |cFFFFFFFFv3.0.0|r cargado exitosamente. Usa |cFFFFD700/admin|r, |cFFFFD700/wpadm|r o |cFFFFD700/wpgm|r.")
+	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools Supreme GM Suite|r |cFFFFFFFFv3.0.0|r cargado exitosamente. Usa |cFFFFD700/admin|r, |cFFFFD700/adt|r o |cFFFFD700/admintools|r.")
 end)
