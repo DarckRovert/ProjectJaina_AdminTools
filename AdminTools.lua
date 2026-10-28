@@ -30,6 +30,9 @@ local function RunCmd(cmd)
 	if cmd:sub(1, 1) ~= "." then cmd = "." .. cmd end
 	if #cmd > 255 then cmd = cmd:sub(1, 255) end
 
+	-- Normalización defensiva para AzerothCore 3.3.5a: .additemset -> .additem set
+	cmd = cmd:gsub("^%.additemset%s+", ".additem set ")
+
 	-- Silent execution via editbox prevents rejected GM commands from leaking to public /say
 	local eb = ChatEdit_GetActiveWindow and ChatEdit_GetActiveWindow() or ChatFrame1EditBox
 	if eb then
@@ -933,7 +936,7 @@ do
 		if b == "" then b = "1" end
 		return ".additem " .. a .. " " .. b
 	end)
-	y = FormRow(p, y, "Añadir Conjunto Set:", function(t) return ".additemset " .. t end)
+	y = FormRow(p, y, "Añadir Conjunto Set:", function(t) return ".additem set " .. t end)
 end
 
 ---------------------------------------------------------------------------
