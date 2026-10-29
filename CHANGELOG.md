@@ -4,6 +4,13 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [3.0.1-Supreme] — 2026-10-27
+### Alineación Sintáctica de Conjuntos de Equipamiento con Motor de Comandos
+- **Comandos de Entrega de Armería (`AdminToolsArmory.lua`):**
+  - Ajustada la sintaxis de entrega masiva de conjuntos de equipamiento `.additem set` para alineación 100% estricta con el motor de comandos del servidor TrinityCore/AzerothCore.
+
+---
+
 ## [3.0.0] — 2026-10-18
 ### Supreme GM Suite (Armería en Vivo, Nivel, Economía Real & Trampas Divinas)
 - **Armería & Inspector de Equipamiento en Vivo (`AdminToolsArmory.lua`):**
