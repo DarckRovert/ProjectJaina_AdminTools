@@ -1,4 +1,4 @@
-# 🔌 Especificación Técnica y API — AdminTools
+# 🔌 Especificación Técnica y API — ProjectJaina_AdminTools
 
 [![GitHub](https://img.shields.io/badge/GitHub-DarckRovert%2FProjectJaina__AdminTools-black?logo=github)](https://github.com/DarckRovert/ProjectJaina_AdminTools)
 [![Ecosistema](https://img.shields.io/badge/Ecosistema-Project%20Jaina%20(M%C3%B3dulo%20%2320)-gold.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
