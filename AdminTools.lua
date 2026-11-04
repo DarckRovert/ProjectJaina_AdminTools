@@ -49,6 +49,23 @@ local function RunCmd(cmd)
 	end
 end
 
+local function SendBotOrder(cmd)
+	if IsShiftKeyDown() and UnitExists("target") and not UnitIsUnit("player", "target") then
+		SendChatMessage(cmd, "WHISPER", nil, UnitName("target"))
+		return
+	end
+
+	if UnitInRaid("player") then
+		SendChatMessage(cmd, "RAID")
+	elseif GetNumPartyMembers() > 0 then
+		SendChatMessage(cmd, "PARTY")
+	elseif UnitExists("target") and not UnitIsUnit("player", "target") then
+		SendChatMessage(cmd, "WHISPER", nil, UnitName("target"))
+	else
+		DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina Admin]|r |cFFFF3333No estás en grupo/banda ni tienes un bot seleccionado.|r")
+	end
+end
+
 local function ConfirmCmd(cmd)
 	local d = StaticPopup_Show("ADMINTOOLS_CONFIRM", cmd)
 	if d then d.data = cmd end
@@ -971,7 +988,7 @@ do
 	y = FlowButtons(p, {
 		{ "Auto-Llenar RDF (.rdf bots)", ".rdf bots" },
 		{ "Desbandar Bots (.rdf reset)",  ".rdf reset" },
-		{ "Forzar Auto-Equipar",          function() SendChatMessage("equip", "PARTY") end },
+		{ "Forzar Auto-Equipar",          function() SendBotOrder("equip") end },
 		{ "Expulsar Bots (*)",            ".bot remove *" },
 	}, y, 4, 150)
 	y = y - 6
@@ -1025,10 +1042,10 @@ do
 	y = y - 16
 
 	y = FlowButtons(p, {
-		{ "Seguir Líder",       function() SendChatMessage("follow", "PARTY") end },
-		{ "Quedarse Quieto",    function() SendChatMessage("stay", "PARTY") end },
-		{ "Atacar Objetivo",    function() SendChatMessage("attack", "PARTY") end },
-		{ "Huir / Retirada",    function() SendChatMessage("flee", "PARTY") end },
+		{ "Seguir Líder",       function() SendBotOrder("follow") end },
+		{ "Quedarse Quieto",    function() SendBotOrder("stay") end },
+		{ "Atacar Objetivo",    function() SendBotOrder("attack") end },
+		{ "Huir / Retirada",    function() SendBotOrder("flee") end },
 		{ "Estrategia Tank",    ".playerbots role tank" },
 		{ "Estrategia Heal",    ".playerbots role heal" },
 		{ "Estrategia DPS",     ".playerbots role dps" },
