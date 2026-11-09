@@ -29,7 +29,7 @@ def test_admin_tools_sanity():
         toc_content = f.read()
     assert "AdminTools.lua" in toc_content, "TOC missing AdminTools.lua"
     assert "30300" in toc_content, "TOC invalid interface version"
-    assert "3.0.0-Supreme" in toc_content, "TOC version mismatch"
+    assert "3.0.1-Supreme" in toc_content, "TOC version mismatch"
     assert "X-Ecosystem-Module: #20" in toc_content, "TOC missing module #20 tag"
     print("[PASS] TOC structure and metadata validated.")
 

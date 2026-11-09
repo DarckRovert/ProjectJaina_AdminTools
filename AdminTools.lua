@@ -1211,6 +1211,10 @@ SlashCmdList["ADMINTOOLS"] = function(msg)
 	if f:IsShown() then f:Hide() else f:Show() end
 end
 
+_G.ProjectJaina_AdminTools_ToggleUI = function()
+	if f:IsShown() then f:Hide() else f:Show() end
+end
+
 local ev = CreateFrame("Frame")
 ev:RegisterEvent("ADDON_LOADED")
 ev:SetScript("OnEvent", function(self, event, name)
@@ -1228,5 +1232,5 @@ ev:SetScript("OnEvent", function(self, event, name)
 		AdminTools.InitArmory(pages["Armería"])
 	end
 	self:UnregisterEvent("ADDON_LOADED")
-	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools Supreme GM Suite|r |cFFFFFFFFv3.0.0|r cargado exitosamente. Usa |cFFFFD700/admin|r, |cFFFFD700/adt|r o |cFFFFD700/admintools|r.")
+	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFD700[Project Jaina]|r |cFF00FFCCAdmin Tools Supreme GM Suite|r |cFFFFFFFFv3.0.1-Supreme|r cargado exitosamente. Usa |cFFFFD700/admin|r, |cFFFFD700/adt|r o |cFFFFD700/admintools|r.")
 end)
